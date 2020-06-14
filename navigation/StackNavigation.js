@@ -8,9 +8,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-import Champs from '../components/Champs';
-import AddChamp from '../components/AddChamp';
+import Products from '../components/Products';
+import Cart from '../components/Cart';
 import Checkout from '../components/ModalScreen';
+import Details from '../components/Details';
+import TabNavigator from './Menu';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,46 +44,49 @@ function IconWithBadge({name, badgeCount, color, size}) {
 }
 
 function HomeIconWithBadge(props) {
-  return <IconWithBadge {...props} badgeCount={7} />;
+  return <IconWithBadge {...props} badgeCount={9} />;
+}
+function CartIconWithBadge(props) {
+  return <IconWithBadge {...props} badgeCount={2} />;
 }
 
-function TabNavigator() {
-  return (
-    <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          if (route.name === 'Home') {
-            return (
-              <HomeIconWithBadge
-                name={
-                  focused
-                    ? 'ios-information-circle'
-                    : 'ios-information-circle-outline'
-                }
-                size={size}
-                color={color}
-              />
-            );
-          } else if (route.name === 'Add') {
-            return (
-              <Ionicons
-                name={focused ? 'ios-add-circle' : 'ios-add'}
-                size={size}
-                color={color}
-              />
-            );
-          }
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'tomato',
-      }}>
-      <Tab.Screen name="Home" component={Champs} />
-      <Tab.Screen name="Add" component={AddChamp} />
-    </Tab.Navigator>
-  );
-}
+// function TabNavigator() {
+//   return (
+//     <Tab.Navigator
+//       screenOptions={({route}) => ({
+//         tabBarIcon: ({focused, color, size}) => {
+//           if (route.name === 'Home') {
+//             return (
+//               <HomeIconWithBadge
+//                 name={
+//                   focused
+//                     ? 'ios-information-circle'
+//                     : 'ios-information-circle-outline'
+//                 }
+//                 size={size}
+//                 color={color}
+//               />
+//             );
+//           } else if (route.name === 'Cart') {
+//             return (
+//               <CartIconWithBadge
+//                 name={focused ? 'ios-add-circle' : 'ios-add'}
+//                 size={size}
+//                 color={color}
+//               />
+//             );
+//           }
+//         },
+//       })}
+//       tabBarOptions={{
+//         activeTintColor: 'black',
+//         inactiveTintColor: 'tomato',
+//       }}>
+//       <Tab.Screen name="Home" component={Products} />
+//       <Tab.Screen name="CArt" component={Cart} />
+//     </Tab.Navigator>
+//   );
+// }
 
 function Screens() {
   return (
@@ -89,6 +94,8 @@ function Screens() {
       <RootStack.Navigator mode="modal" headerMode="none">
         <RootStack.Screen name="Main" component={TabNavigator} />
         <RootStack.Screen name="Checkout" component={Checkout} />
+        <RootStack.Screen name="Details" component={Details} />
+        <RootStack.Screen name="Cart" component={Cart} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

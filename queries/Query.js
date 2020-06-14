@@ -27,17 +27,20 @@ const add_Champ = gql`
   }
 `;
 
-const get_Champs = gql`
-  query Champ($lane: String!) {
-    champs(lane: $lane) {
-      id
+const get_Products = gql`
+  query Product($name: String!) {
+    products(name: $name) {
+      _id
       name
-      damagetype
-      lane
-      playstyle
-      champimage
+      price
+      productimages {
+        url
+      }
+      reviews
+      details
+      qty
     }
   }
 `;
 
-export {add_Champ, get_Champs};
+export {get_Products};
